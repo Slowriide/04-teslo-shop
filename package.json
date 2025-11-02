@@ -6,21 +6,36 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed": "tsx src/seed/seed-database.ts"
+  },
+   "prisma": {
+    "seed": "tsx prisma/seed/seed.ts"
   },
   "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "@tailwindcss/vite": "^4.0.0",
+    "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
+    "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "next": "16.0.1"
+    "react-icons": "^5.5.0",
+    "swiper": "^12.0.3",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "16.0.1"
+    "eslint-config-next": "16.0.1",
+    "prisma": "^6.18.0",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5"
   }
 }
