@@ -17,7 +17,7 @@ const productsInCart = [
   initialData.products[2],
 ];
 
-export default async function ({ params }: Props) {
+export default async function OrderByIdPage({ params }: Props) {
   const { id } = await params;
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
