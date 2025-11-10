@@ -13,7 +13,6 @@ export const getStockBySlug = async (slug: string) => {
 
     return stock?.inStock ?? 0;
   } catch (error) {
-    console.log(error);
     throw new Error("Error al obtener producto por slug");
   }
 };
