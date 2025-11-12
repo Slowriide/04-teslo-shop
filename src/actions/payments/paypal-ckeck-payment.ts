@@ -74,10 +74,7 @@ const getPaypaylBearerToken = async (): Promise<string | null> => {
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-  myHeaders.append(
-    "Authorization",
-    "Basic QVZQczlWRlJFQVl5Skl3NDVyUW50Rk5wNGwzSVN0MnJITTRWdmJES3JUa0hjTnIyaTN4SlV6cUJBalBmbHg3LVVRNVJHQWZtNlVCMnA1Q0c6RURoTjk4RkZwZEdrbEMwa0Y5OEJ5VS1WLW9ERU5xaVd5bGp1QmlvQXdMRDNidm5LQU1KdnpHNG5nMk8wRl9EaGJGY0tWYmludWRYcVhTd2o="
-  );
+  myHeaders.append("Authorization", ` Bearer ${base64Token}`);
 
   const urlencoded = new URLSearchParams();
   urlencoded.append("grant_type", "client_credentials");
