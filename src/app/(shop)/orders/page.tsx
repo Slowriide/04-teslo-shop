@@ -1,10 +1,17 @@
 // https://tailwindcomponents.com/component/hoverable-table
+import { getOrderByUser } from "@/actions/order/get-order-by-user";
 import { Title } from "@/components";
-
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { IoCardOutline } from "react-icons/io5";
 
-export default function OrderPage() {
+export default async function OrderPage() {
+  const { ok, orders = [] } = await getOrderByUser();
+
+  if (!ok) {
+    redirect("/auth/login");
+  }
+
   return (
     <>
       <Title title="Orders" />
@@ -40,41 +47,35 @@ export default function OrderPage() {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b border-b-gray-100 transition duration-300 ease-in-out hover:bg-gray-100">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                1
-              </td>
-              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Mark
-              </td>
-              <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <IoCardOutline className="text-green-800" />
-                <span className="mx-2 text-green-800">Pagada</span>
-              </td>
-              <td className="text-sm text-gray-900 font-light px-6 ">
-                <Link href="/orders/123" className="hover:underline">
-                  Ver orden
-                </Link>
-              </td>
-            </tr>
-
-            <tr className="bg-white border-b border-b-gray-100 transition duration-300 ease-in-out hover:bg-gray-100">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                1
-              </td>
-              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Mark
-              </td>
-              <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <IoCardOutline className="text-red-800" />
-                <span className="mx-2 text-red-800">No Pagada</span>
-              </td>
-              <td className="text-sm text-gray-900 font-light px-6 ">
-                <Link href="/orders/123" className="hover:underline">
-                  Ver orden
-                </Link>
-              </td>
-            </tr>
+            {orders.map((order) => (
+              <tr
+                key={order.id}
+                className="bg-white border-b border-b-gray-100 transition duration-300 ease-in-out hover:bg-gray-100"
+              >
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {order.id.split("-").at(-1)}
+                </td>
+                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {order.OrderAddress?.firstName} {order.OrderAddress?.lastName}
+                </td>
+                {order.isPaid ? (
+                  <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <IoCardOutline className="text-green-800" />
+                    <span className="mx-2 text-green-800">Pagada</span>
+                  </td>
+                ) : (
+                  <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <IoCardOutline className="text-red-800" />
+                    <span className="mx-2 text-red-800">No Pagada</span>
+                  </td>
+                )}
+                <td className="text-sm text-gray-900 font-light px-6 ">
+                  <Link href={`orders/${order.id}`} className="hover:underline">
+                    Ver orden
+                  </Link>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
