@@ -60,6 +60,16 @@ body {
     background-color: rgb(30 64 175);
   }
 }
+.btn-danger {
+  background-color: rgb(235, 36, 22);
+  color: white;
+  padding: 0.5rem 1rem;
+  transition: all 0.15s;
+
+  &:hover {
+    background-color: rgb(233, 25, 10);
+  }
+}
 
 .btn-secondary {
   background-color: rgb(229 231 235);

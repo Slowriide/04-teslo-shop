@@ -45,7 +45,7 @@ export const initialData: SeedData = {
     },
   ],
 
-  categories: ["Shirts", "Oants", "Hoodies", "Hats"],
+  categories: ["Shirts", "Pants", "Hoodies", "Hats"],
   products: [
     {
       description:
